@@ -6,7 +6,7 @@ using UnityEngine;
 public class QuestLogic : MonoBehaviour
 {
     [SerializeField] private List<QuestData> _questDatas;
-    private List<Quest> _quests;
+    private List<Quest> _quests = new();
     private delegate bool CheckQuest(ref float target,float value);
 
     private CheckQuest Quest;
@@ -17,7 +17,10 @@ public class QuestLogic : MonoBehaviour
         {
             _quests.Add(data.CreateQuest());
         }
-        
+    }
+
+    private void Start()
+    {
         QuestEventBus.GetFillQuests(_quests);
     }
 
@@ -50,6 +53,7 @@ public class QuestLogic : MonoBehaviour
         {
             if (q.questType == global::Quest.QuestType.Kill)
             {
+                Debug.Log(enemy);
                 q.Done(enemy);
             }
         }

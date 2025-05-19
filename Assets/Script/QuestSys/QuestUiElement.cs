@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class QuestUiElement : MonoBehaviour
     [SerializeField] private Image progressBar;
     [SerializeField] private Image questIcon;
     [SerializeField] private List<Sprite> Icons;
+    [SerializeField] private TMP_Text progressText;
     
     private Quest quest;
     private Animator _animator;
@@ -53,11 +55,13 @@ public class QuestUiElement : MonoBehaviour
 
     private void UpdateProgress()
     {
-        progressBar.fillAmount = quest.goal / (float)quest.progress;
+        progressBar.fillAmount = quest.progress / (float)quest.goal;
+        progressText.text = quest.progress + "/" + quest.goal;
     }
 
     private void DoneQuest(Quest Q)
     {
+        Debug.Log(Q == quest);
         if(Q == quest)
             _animator.Play("Done");
     }

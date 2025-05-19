@@ -5,7 +5,7 @@ using UnityEngine;
 public class QuestDataKills : QuestData
 {
     public int kills;
-    public Enemy enemyType;
+    public List<Enemy> enemyType;
     
     public override Quest CreateQuest()
     {
